@@ -29,9 +29,9 @@ namespace WishList.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Item obj)
+        public IActionResult Create(Item item)
         {
-            _context.Items.Add(obj);
+            _context.Items.Add(item);
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -39,13 +39,8 @@ namespace WishList.Controllers
         [HttpPost]
         public IActionResult Delete(int id)
         {
-            var obj = _context.Items.Find(id);
-            if (obj == null)
-            {
-                return NotFound();
-            }
-
-            _context.Items.Remove(obj);
+            var item = _context.Items.Find(id);
+            _context.Items.Remove(item);
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
